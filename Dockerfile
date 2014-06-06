@@ -14,7 +14,6 @@ RUN add-apt-repository -y ppa:nginx/stable
 RUN apt-get update
 
 RUN apt-get install -y nginx
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 RUN apt-get install -y supervisor
 ADD supervisor.conf /etc/supervisor/conf.d/supervisor.conf
@@ -22,6 +21,8 @@ ADD supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 RUN apt-get install -y inotify-tools
 ADD . /app
 WORKDIR /app
+
+ADD nginx.conf /etc/nginx/nginx.conf
 
 VOLUME ["/mnt"]
 
